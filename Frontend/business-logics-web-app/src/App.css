@@ -1,0 +1,10 @@
+.loading-container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 9999999;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

@@ -1,0 +1,6 @@
+@BusinessLogicsAPI_HostAddress = http://localhost:5045
+
+GET {{BusinessLogicsAPI_HostAddress}}/user/GetCurrentUser
+Accept: application/json
+
+###

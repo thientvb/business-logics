@@ -1,0 +1,19 @@
+.star-rating-filter {
+    font-size: 16px;
+    cursor: pointer;
+    display: grid;
+}
+  
+.star-rating-filter a:hover {
+    cursor: pointer;
+    color: #611212;
+}
+  
+.star {
+    display: inline-block;
+}
+  
+.filled {
+    color: #ffa41c;
+}
+  
