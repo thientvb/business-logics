@@ -43,8 +43,10 @@ export const Registration = () => {
       try {
         setIsLoading(true);
         const res = await registerNewUser(formData.name, formData.email, formData.phoneNumber, formData.address, formData.password, formData.confirmPassword);
-        navigate('/login?registrationSuccess=true');
-        toast.success(res.data.message[0]);
+        if (res.status === 200) {
+          navigate('/login?registrationSuccess=true');
+          toast.success(res.data.message[0]);
+        }
       } catch (error) {
         if (error.response.data.length > 0) {
           setErrorPasswords(error.response.data)

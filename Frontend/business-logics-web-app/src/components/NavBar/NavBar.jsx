@@ -50,7 +50,6 @@ export const NavBar = () => {
     }, []);
 
     const handleSearch = () => {
-        console.log(searchText);
         if (searchText) {
             navigate(`/?search=${encodeURIComponent(searchText)}`);
         } else {
@@ -59,8 +58,7 @@ export const NavBar = () => {
     };
 
     const handlePressEnter = (event) => {
-        if (event.charCode === 13) {
-            event.preventDefault();
+        if (event.code === "Enter") {
             handleSearch();
         }
     }
@@ -91,8 +89,8 @@ export const NavBar = () => {
                         <div className="input-group">
                             <input className="form-control" type="search" placeholder="Search"
                                 value={searchText} onChange={(e) => setSearchText(e.target.value)} onKeyDown={(event) => handlePressEnter(event)} />
-                            <div className="input-group-text cursor-pointer">
-                              <i className="bi bi-search" onClick={handleSearch}></i>
+                            <div className="input-group-text cursor-pointer" onClick={handleSearch}>
+                              <i className="bi bi-search"></i>
                             </div>
                         </div>
                     </div>

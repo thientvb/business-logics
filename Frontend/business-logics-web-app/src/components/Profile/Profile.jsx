@@ -23,6 +23,13 @@ export const Profile = () => {
                     <li><a href="#"><i className="bi bi-linkedin"></i></a></li>
                 </ul>
             </div>
+            <div className='row'>
+                <div className="col-md-12">
+                <button type="submit" className="btn btn-primary float-end m-2">Delete Account</button>
+                <button type="submit" className="btn btn-primary float-end m-2">Change Password</button>
+                <button type="submit" className="btn btn-primary float-end m-2">Edit</button>
+                </div>
+            </div>
         </div>
     )
 }

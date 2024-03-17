@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './Home.css';
 import { Link, useLocation } from 'react-router-dom';
 import { FilterAdvance } from './FilterAdvance/FilterAdvance';
@@ -14,15 +14,11 @@ export const Home = () => {
   const searchParams = new URLSearchParams(location.search);
   const searchText = searchParams.get('search');
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const initialized = useRef(false);
   const { setCart } = useContext(CartContext);
 
   useEffect(() => {
-    if (!initialized.current) {
-      initialized.current = true;
-      fetchProducts();
-    }
-  }, []);
+    fetchProducts();
+  }, [searchText]);
 
   const fetchProducts = async () => {
     try {
@@ -70,7 +66,6 @@ export const Home = () => {
   }
 
   const handleEditQuantity = (itemId, newQuantity) => {
-    console.log(newQuantity);
     setFilteredProducts(prevCartItems => prevCartItems.map(item => {
       if (item.id === itemId) {
         return { ...item, quantityOfChoices: newQuantity };
@@ -123,7 +118,8 @@ export const Home = () => {
                         ))}
                         <a href="#" className="review" title="Reviewed">{product.numberOfReviews}</a>
                       </div>
-                      <p>700+ bought in past month</p>
+                      <span>700+ bought in past month</span><br></br>
+                      <small>Quantity: {product.quantity} in our store</small>
                       {product.discount && (
                         <div className="product-price">
                           $<span className="integer-part">{getProductIntegerPart(product.price - product.discount)}</span>

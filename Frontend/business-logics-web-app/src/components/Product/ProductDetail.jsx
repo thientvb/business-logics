@@ -17,7 +17,6 @@ export const ProductDetail = () => {
         setIsLoading(true);
         const response = await getProduct(id);
         if (response.status === 200) {
-          console.log(response.data);
           setProduct(response.data);
         } else {
           toast.error('Failed to fetch product');

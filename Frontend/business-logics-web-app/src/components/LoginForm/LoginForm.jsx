@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './LoginForm.css';
 import { toast } from 'react-toastify';
@@ -15,10 +15,14 @@ export const LoginForm = () => {
   const searchParams = new URLSearchParams(location.search);
   const registrationSuccess = searchParams.get('registrationSuccess');
   const [showPassword, setShowPassword] = useState(false);
+  const initialized = useRef(false);
 
   useEffect(() => {
-    if (registrationSuccess === 'true') {
-      toast.success('Registration successful!');
+    if (!initialized.current) {
+      initialized.current = true;
+      if (registrationSuccess === 'true') {
+        toast.success('Registered successfully!');
+      }
     }
   }, [registrationSuccess]);
 
@@ -81,7 +85,7 @@ export const LoginForm = () => {
   };
 
   const handlePressEnter = (event) => {
-    if (event.charCode === 13) {
+    if (event.code === "Enter") {
       handleSubmit(event);
     }
   }

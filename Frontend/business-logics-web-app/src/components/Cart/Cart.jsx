@@ -2,12 +2,13 @@ import React, { useState, useEffect, useContext } from 'react';
 import AuthContext from 'Context/AuthProvider';
 import CartContext from 'Context/CartProvider';
 import './Cart.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { createOrder } from 'Services/orderService';
 import { Blocks } from 'react-loader-spinner';
 
 export const Cart = () => {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
@@ -110,7 +111,7 @@ export const Cart = () => {
           toast.success('Create order successful!!!');
           selectedItems.forEach(x => handleRemoveItem(x));
           setSelectedItems([]);
-          navigator('/order');
+          navigate('/my-order');
         }
       } catch (error) {
         toast.error(error.response.data);
@@ -175,6 +176,14 @@ export const Cart = () => {
                       value={item.quantityOfChoices}
                       onChange={(e) => handleEditQuantity(item.id, parseInt(e.target.value))}
                     />
+                    <br></br>
+                    {item.quantity > 1 && (
+                      <small>Have {item.quantity} items in our store</small>
+
+                    )}
+                    {item.quantity === 1 && (
+                      <small>Only have 1 item in our store</small>
+                    )}
                     {item.discount && (
                       <div className="product-price">
                         $<span className="integer-part">{getProductIntegerPart(item.price - item.discount)}</span>
