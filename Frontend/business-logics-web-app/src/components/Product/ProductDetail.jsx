@@ -67,6 +67,11 @@ export const ProductDetail = () => {
               </div>
             </div>
           </div>
+          <div className='row'>
+            <div className="col-md-12">
+              <button type="submit" className="btn btn-primary float-end m-2">Review</button>
+            </div>
+          </div>
         </div>
       )}
     </>
