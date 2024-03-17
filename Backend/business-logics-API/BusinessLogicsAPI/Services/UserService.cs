@@ -23,6 +23,7 @@ namespace BusinessLogicsAPI.Repositories
             }
             UserInfomation userInfo = new()
             {
+                Id = id,
                 Address = user.Address,
                 Email = user.Email!,
                 Name = user.Name,

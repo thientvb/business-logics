@@ -5,12 +5,12 @@ using BusinessLogicsAPI.Intefaces;
 
 namespace BusinessLogicsAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController(IUserService _userService) : ControllerBase
     {
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> GetCurrentUser()
         {
             ClaimsPrincipal currentUser = User;

@@ -144,3 +144,4 @@ C:\Users\Thien\source\repos\business-logics\Backend\business-logics-API\Business
 C:\Users\Thien\source\repos\business-logics\Backend\business-logics-API\BusinessLogicsAPI\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Thien\source\repos\business-logics\Backend\business-logics-API\BusinessLogicsAPI\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Thien\source\repos\business-logics\Backend\business-logics-API\BusinessLogicsAPI\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Thien\source\repos\business-logics\Backend\business-logics-API\BusinessLogicsAPI\obj\Debug\net8.0\BusinessLogicsAPI.sourcelink.json

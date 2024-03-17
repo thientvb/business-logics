@@ -12,8 +12,7 @@
   }
   
   .product-item-img {
-    width: 250px;
-    height: 250px;
+    width: 200px;
     margin-bottom: 10px;
   }
   
@@ -73,6 +72,6 @@
     color: #565959;
   }
 .quantity-product {
-    width: 60px;
+    width: 50px;
     margin-right: 5px;
 }

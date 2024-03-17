@@ -1,4 +1,5 @@
 ﻿using BusinessLogicsAPI.Data;
+using BusinessLogicsAPI.Exceptions;
 using BusinessLogicsAPI.Intefaces;
 using BusinessLogicsAPI.Models;
 using Microsoft.EntityFrameworkCore;
@@ -21,9 +22,11 @@ namespace BusinessLogicsAPI.Services
             if (!string.IsNullOrEmpty(searchText))
             {
                 query = query.Where(p => 
-                    p.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
-                    p.Category.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
-                    p.Description.Contains(searchText, StringComparison.OrdinalIgnoreCase)
+                    p.Name.Contains(searchText) ||
+                    p.Author.Contains(searchText) ||
+                    p.Brand.Contains(searchText) ||
+                    p.Category.Contains(searchText) ||
+                    p.Description.Contains(searchText)
                 );
             }
 
@@ -49,7 +52,7 @@ namespace BusinessLogicsAPI.Services
 
             if (existingProduct == null)
             {
-                throw new InvalidOperationException("Product not found.");
+                throw new NotFoundException("Product not found.");
             }
 
             existingProduct.Name = product.Name;

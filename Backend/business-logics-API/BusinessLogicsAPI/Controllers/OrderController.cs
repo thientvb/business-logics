@@ -6,12 +6,12 @@ using System.Security.Claims;
 
 namespace BusinessLogicsAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class OrderController(IOrderService _orderService) : ControllerBase
     {
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> GetOrders(int skip = 0, int take = 10)
         {
             // Get the user's ID
@@ -22,7 +22,6 @@ namespace BusinessLogicsAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize]
         public async Task<IActionResult> GetOrder(int id)
         {
             var order = await _orderService.GetOrderByIdAsync(id);
@@ -47,7 +46,6 @@ namespace BusinessLogicsAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize]
         public async Task<IActionResult> UpdateOrder(int id, [FromBody] PurchaseOrder order)
         {
             if (id != order.Id)
@@ -66,7 +64,6 @@ namespace BusinessLogicsAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize]
         public async Task<IActionResult> DeleteOrder(int id)
         {
             var order = await _orderService.GetOrderByIdAsync(id);

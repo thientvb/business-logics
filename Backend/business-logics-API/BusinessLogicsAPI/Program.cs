@@ -8,6 +8,7 @@ using System.Text;
 using Swashbuckle.AspNetCore.Filters;
 using Microsoft.EntityFrameworkCore;
 using BusinessLogicsAPI.Extensions;
+using BusinessLogicsAPI.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +51,13 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+//Filters
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<GlobalModelStateFilterAttribute>();
+    options.Filters.Add<GlobalExceptionFilterAttribute>();
+});
+
 //Cors
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 {
@@ -68,7 +76,6 @@ builder.Services.AddSwaggerGen(options =>
     options.OperationFilter<SecurityRequirementsOperationFilter>();
 });
 
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 

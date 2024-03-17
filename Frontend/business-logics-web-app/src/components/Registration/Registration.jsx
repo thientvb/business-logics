@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Registration.css';
-import { ToastContainer, toast } from 'react-toastify';
-import { registerNewUser } from '../../Services/userService';
+import { toast } from 'react-toastify';
+import { registerNewUser } from 'Services/userService';
 import { useNavigate } from 'react-router-dom';
 import { Blocks } from 'react-loader-spinner';
 
@@ -107,68 +107,69 @@ export const Registration = () => {
         ariaLabel="loading"
         wrapperClass="loading-container"
       />}
-    <div className="registration-page container">
-      <div className="row">
-        <div className="col-md-6 offset-md-3">
-          <div className="signup-form">
-            <form onSubmit={handleSubmit} className="mt-2 border p-4 bg-light shadow">
-              <h4 className="mb-3 text-secondary">Create Your Account</h4>
-              <div className="row">
-                <div className="mb-3 col-md-12">
-                  <label htmlFor="email">Email<span className="text-danger">*</span></label>
-                  <input type="email" id="email" name="email" className="form-control" placeholder="Enter Email" onChange={handleChange} maxLength={100} />
-                  {!validateEmail(formData.email) && <span className="text-danger">Please enter a valid email address.</span>}
-                </div>
+      <div className="registration-page container">
+        <div className="row">
+          <div className="col-md-6 offset-md-3">
+            <div className="signup-form">
+              <form onSubmit={handleSubmit} className="mt-2 border p-4 bg-light shadow">
+                <h4 className="mb-3 text-secondary">Create Your Account</h4>
+                <div className="row">
+                  <div className="mb-3 col-md-12">
+                    <label htmlFor="email">Email<span className="text-danger">*</span></label>
+                    <input type="email" id="email" name="email" className="form-control" placeholder="Enter Email" onChange={handleChange} maxLength={100} />
+                    {!validateEmail(formData.email) && <span className="text-danger">Please enter a valid email address.</span>}
+                  </div>
 
-                <div className="mb-3 col-md-12">
-                  <label htmlFor="name">Name<span className="text-danger">*</span></label>
-                  <input type="text" id="name" name="name" className="form-control" placeholder="Enter Name" onChange={handleChange} maxLength={200} />
-                </div>
+                  <div className="mb-3 col-md-12">
+                    <label htmlFor="name">Name<span className="text-danger">*</span></label>
+                    <input type="text" id="name" name="name" className="form-control" placeholder="Enter Name" onChange={handleChange} maxLength={200} />
+                  </div>
 
-                <div className="mb-3 col-md-12">
-                  <label htmlFor="address">Address</label>
-                  <input type="text" id="address" name="address" className="form-control" placeholder="Enter Address" onChange={handleChange} maxLength={200} />
-                </div>
+                  <div className="mb-3 col-md-12">
+                    <label htmlFor="address">Address</label>
+                    <input type="text" id="address" name="address" className="form-control" placeholder="Enter Address" onChange={handleChange} maxLength={200} />
+                  </div>
 
-                <div className="mb-3 col-md-12">
-                  <label htmlFor="phoneNumber">Phone Number</label>
-                  <input type="text" id="phoneNumber" name="phoneNumber" className="form-control" placeholder="Enter Phone Number" onChange={handleChange} maxLength={10} />
-                </div>
+                  <div className="mb-3 col-md-12">
+                    <label htmlFor="phoneNumber">Phone Number</label>
+                    <input type="text" id="phoneNumber" name="phoneNumber" className="form-control" placeholder="Enter Phone Number" onChange={handleChange} maxLength={10} />
+                  </div>
 
-                <div className="mb-3 col-md-12">
-                  <label htmlFor="password">Password<span className="text-danger">*</span></label>
-                  <div className="input-group">
-                    <input type={showPassword ? 'text' : 'password'} id="password" name="password" className="form-control" placeholder="Enter Password" onChange={handleChange} maxLength={50} />
-                    <div className="input-group-text cursor-pointer" onClick={handleTogglePassword}>
-                      <i className={`bi ${showPassword ? 'bi-eye-slash-fill' : 'bi-eye-fill'}`} />
+                  <div className="mb-3 col-md-12">
+                    <label htmlFor="password">Password<span className="text-danger">*</span></label>
+                    <div className="input-group">
+                      <input type={showPassword ? 'text' : 'password'} id="password" name="password" className="form-control" placeholder="Enter Password" onChange={handleChange} maxLength={50} />
+                      <div className="input-group-text cursor-pointer" onClick={handleTogglePassword}>
+                        <i className={`bi ${showPassword ? 'bi-eye-slash-fill' : 'bi-eye-fill'}`} />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="mb-3 col-md-12">
-                  <label htmlFor="confirmPassword">Confirm Password<span className="text-danger">*</span></label>
-                  <div className="input-group">
-                    <input type={showConfirmPassword ? 'text' : 'password'} id="confirmPassword" name="confirmPassword" className="form-control" placeholder="Confirm Password" onChange={handleChange} maxLength={50} />
-                    <div className="input-group-text cursor-pointer" onClick={handleToggleConfirmPassword}>
-                      <i className={`bi ${showConfirmPassword ? 'bi-eye-slash-fill' : 'bi-eye-fill'}`} />
+                  <div className="mb-3 col-md-12">
+                    <label htmlFor="confirmPassword">Confirm Password<span className="text-danger">*</span></label>
+                    <div className="input-group">
+                      <input type={showConfirmPassword ? 'text' : 'password'} id="confirmPassword" name="confirmPassword" className="form-control" placeholder="Confirm Password" onChange={handleChange} maxLength={50} />
+                      <div className="input-group-text cursor-pointer" onClick={handleToggleConfirmPassword}>
+                        <i className={`bi ${showConfirmPassword ? 'bi-eye-slash-fill' : 'bi-eye-fill'}`} />
+                      </div>
                     </div>
                   </div>
+                  {errorPasswords.length > 0 && (
+                    <ul className="text-danger">
+                      {errorPasswords.map((error, index) => (
+                        <li key={index}>{error}</li>
+                      ))}
+                    </ul>
+                  )}
+                  <div className="col-md-12">
+                    <button type="submit" className="btn btn-primary float-end" disabled={!validateEmail(formData.email) || !formData.email}>Signup Now</button>
+                  </div>
                 </div>
-                {errorPasswords.length > 0 && (
-                  <ul className="text-danger">
-                    {errorPasswords.map((error, index) => (
-                      <li key={index}>{error}</li>
-                    ))}
-                  </ul>
-                )}
-                <div className="col-md-12">
-                  <button type="submit" className="btn btn-primary float-end" disabled={!validateEmail(formData.email) || !formData.email}>Signup Now</button>
-                </div>
-              </div>
-            </form>
-            <p className="text-center mt-3 text-secondary">If you have account, Please <Link to={'/login'}>Login Now</Link></p>
+              </form>
+              <p className="text-center mt-3 text-secondary">If you have account, Please <Link to={'/login'}>Login Now</Link></p>
+            </div>
           </div>
         </div>
       </div>
-    </div><ToastContainer /></>
+    </>
   );
 };

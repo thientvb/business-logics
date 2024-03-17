@@ -6,7 +6,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using BusinessLogicsAPI.Intefaces;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BusinessLogicsAPI.Repositories
 {
@@ -87,6 +86,7 @@ namespace BusinessLogicsAPI.Repositories
             string refreshToken = "";
             UserInfomation userInfo = new()
             {
+                Id = getUser.Id,
                 Address = getUser.Address,
                 Email = getUser.Email!,
                 Name = getUser.Name,

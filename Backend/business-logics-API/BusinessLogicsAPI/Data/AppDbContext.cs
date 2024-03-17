@@ -24,11 +24,6 @@ namespace BusinessLogicsAPI.Data
                 .WithMany()
                 .HasForeignKey(pod => pod.ProductId);
 
-            modelBuilder.Entity<PurchaseOrderDetail>()
-                .HasOne(pod => pod.PurchaseOrder)
-                .WithMany(po => po.PurchaseOrderDetails)
-                .HasForeignKey(pod => pod.PurchaseOrderId);
-
             modelBuilder.Entity<PurchaseOrder>()
                 .HasOne(po => po.User)
                 .WithMany()

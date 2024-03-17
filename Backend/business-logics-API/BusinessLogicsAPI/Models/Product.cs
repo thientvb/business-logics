@@ -2,7 +2,7 @@
 {
     public class Product : BaseEntity
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
         public string Category { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string Brand { get; set; } = string.Empty;

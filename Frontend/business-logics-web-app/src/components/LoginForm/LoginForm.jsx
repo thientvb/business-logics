@@ -1,11 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect, useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './LoginForm.css';
-import { ToastContainer, toast } from 'react-toastify';
-import { loginUser } from '../../Services/userService';
-import { useNavigate } from 'react-router-dom';
-import AuthContext from '../../Context/AuthProvider';
+import { toast } from 'react-toastify';
+import { loginUser } from 'Services/userService';
+import AuthContext from 'Context/AuthProvider';
 import { Blocks } from 'react-loader-spinner';
 
 export const LoginForm = () => {
@@ -15,12 +14,13 @@ export const LoginForm = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const registrationSuccess = searchParams.get('registrationSuccess');
+  const [showPassword, setShowPassword] = useState(false);
+
   useEffect(() => {
     if (registrationSuccess === 'true') {
       toast.success('Registration successful!');
     }
   }, [registrationSuccess]);
-  const [showPassword, setShowPassword] = useState(false);
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
@@ -50,6 +50,7 @@ export const LoginForm = () => {
         localStorage.setItem('refreshToken', res.data.tokenViewModel.refreshToken);
         const dataLogin = {
           isAuthenticated: true,
+          id: res.data.user.id,
           name: res.data.user.name,
           email: res.data.user.email,
           address: res.data.user.address,
@@ -165,7 +166,7 @@ export const LoginForm = () => {
             </div>
           </div>
         </div>
-      </div><ToastContainer />
+      </div>
     </>
   )
 }

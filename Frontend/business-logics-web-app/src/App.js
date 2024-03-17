@@ -15,6 +15,7 @@ import { NotFound } from 'components/Shared/NotFound';
 import { Cart } from 'components/Cart/Cart';
 import { Order } from 'components/Order/Order';
 import { OrderDetail } from 'components/OrderDetail/OrderDetail';
+import { ProductDetail } from 'components/Product/ProductDetail';
 
 function App() {
   return (
@@ -27,8 +28,9 @@ function App() {
           <Route path='/login' element={<LoginForm />}></Route>
           <Route path='/profile' element={<Profile />}></Route>
           <Route path='/cart' element={<Cart />}></Route>
-          <Route path='/order' element={<Order />}></Route>
-          <Route path='/order-detail' element={<OrderDetail />}></Route>
+          <Route path='/my-order' element={<Order />}></Route>
+          <Route path='/order-detail/:id' element={<OrderDetail />}></Route>
+          <Route path='/product/:id' element={<ProductDetail />}></Route>
           <Route path='*' element={<NotFound />}></Route>
         </Routes>
       </BrowserRouter>
